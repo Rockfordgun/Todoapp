@@ -6,6 +6,7 @@ const container = document.querySelector ('.toDo-container');
 const list = document.querySelector ('.toDo-list');
 const clearBtn = document.querySelector ('.clearBtn');
 
+
 let editElement;
 let editFlag = false;
 let editID = "";
@@ -13,6 +14,8 @@ let editID = "";
 form.addEventListener("submit", additem);
 //clear items//
 clearBtn.addEventListener('click', clearItems);
+
+
 
 function additem (e) {
     e.preventDefault();
@@ -36,6 +39,12 @@ function additem (e) {
           </button>
         </div>
       `;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
+
         list.appendChild(element);
 
         displayAlert('You have added A Item to your list', 'success');
@@ -47,7 +56,11 @@ function additem (e) {
         setBackToDefault () ;
 
     }else if (value !== "" && editFlag === true){
-        console.log("Ediing");
+        editElement.innerHTML = value;
+        displayAlert ('Your item has been changed', 'success');
+        //edit storage
+        editLocalStorage(editID, value);
+        setBackToDefault();
     } else {
         displayAlert("You didnt enter anything!", "danger")
     }
@@ -86,9 +99,39 @@ function setBackToDefault (){
     editID = '';
     submitBtn.textContent = "submit";
 }
+
+//Delete
+
+function deleteItem (e) {
+    const element = e.currentTarget.parentElement.parentElement;
+    const id = element.dataset.id;
+    list.removeChild(element);
+
+    if (list.children.length === 0) {
+        container.classList.remove("show-container");
+    }
+    displayAlert ('Item Removed', 'danger');
+    setBackToDefault();
+    //remove from local storage//
+    //removeFromLocalStorage(id);
+}
+
+function editItem (e) {
+    const element = e.currentTarget.parentElement.parentElement;
+    editElement = e.currentTarget. parentElement.
+    previousElementSibling;
+
+    todo.value = editElement.innerHTML;
+    editFlag= true;
+    editID = element.dataset.id;
+    submitBtn.textContent = "edit";
+}
+
+
 //Localstorage//
 function addToLocalStorage (id,value){
     console.log('Add To local Storage');
 }
 
-
+function removeFromLocalStorage (id) {}
+function editLocalStorage (id, value) {}
