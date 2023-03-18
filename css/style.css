@@ -245,11 +245,11 @@
     text-transform: capitalize;
   }
   .list-item:hover {
-    color: var(--clr-grey-5);
-    background: var(--clr-grey-10);
+    color: var(--clr-primary-6);
+    background: var(--clr-primary-9);
   }
   .list-item:hover .title {
-    color: var(--clr-grey-5);
+    color: var(--clr-primary-6);
   }
   .title {
     margin-bottom: 0;
@@ -262,21 +262,21 @@
     background: transparent;
     border-color: transparent;
     cursor: pointer;
-    font-size: 0.7rem;
-    margin: 0 0.15rem;
+    font-size: 0.9rem;
+    margin: 0 0.30rem;
     transition: var(--transition);
   }
   .edit-btn {
-    color: var(--clr-green-light);
+    color: var(--clr-primary-7);
   }
   .edit-btn:hover {
-    color: var(--clr-green-dark);
+    color: var(--clr-primary-1);
   }
   .delete-btn {
-    color: var(--clr-red-light);
+    color: var(--clr-primary-8);
   }
   .delete-btn:hover {
-    color: var(--clr-red-dark);
+    color: var(--clr-primary-1);
   }
   .clearBtn{
     text-transform: capitalize;

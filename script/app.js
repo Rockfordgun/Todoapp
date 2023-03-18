@@ -17,10 +17,59 @@ function additem (e) {
     const value = todo.value;
     const id = new Date().getTime().toString();
     if (value !== "" && editFlag === false) {
-        console.log("Add Item To List");
+        const element = document.createElement ('article');
+        element.classList.add("list-item");
+        const attr = document.createAttribute('data-id');
+        attr.value = id;
+        element.setAttributeNode(attr);
+        element.innerHTML = `<p class="title">${value}</p>
+        <div class="btn-container">
+          <!-- edit btn -->
+          <button type="button" class="edit-btn">
+            <i class="fas fa-edit"></i>
+          </button>
+          <!-- delete btn -->
+          <button type="button" class="delete-btn">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      `;
+        list.appendChild(element);
+
+        displayAlert('You have added A Item to your list', 'success');
+
+        container.classList.add("show-container");
+        //add to storage
+        addToLocalStorage (id, value);
+        //Default
+        setBackToDefault ();
+
     }else if (value !== "" && editFlag === true){
         console.log("Ediing");
     } else {
-        console.log("Empty Value")
+        displayAlert("You didnt enter anything!", "danger")
     }
 }
+
+//Alert//
+
+function displayAlert (text, action) {
+    alert.textContent = text;
+    alert.classList.add (`alert-${action}`); 
+//Remove Alert
+setTimeout (function () {
+    alert.textContent = "";
+    alert.classList.remove (`alert-${action}`); 
+},1000);
+}
+
+//Default//
+function setBackToDefault (){
+    console.log ("Back To default");
+}
+//Localstorage//
+function addToLocalStorage (id,value){
+    console.log('Add To local Storage');
+}
+
+
