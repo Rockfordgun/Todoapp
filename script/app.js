@@ -113,7 +113,7 @@ function deleteItem (e) {
     displayAlert ('Item Removed', 'danger');
     setBackToDefault();
     //remove from local storage//
-    //removeFromLocalStorage(id);
+    removeFromLocalStorage(id);
 }
 
 function editItem (e) {
@@ -130,8 +130,43 @@ function editItem (e) {
 
 //Localstorage//
 function addToLocalStorage (id,value){
-    console.log('Add To local Storage');
+    const storedItem = {id, value};
+    let items = getLocalStorage();
+
+    console.log(items);
+
+    items.push(storedItem);
+    localStorage.setItem ('list', JSON.stringify(items));
 }
 
-function removeFromLocalStorage (id) {}
-function editLocalStorage (id, value) {}
+function editLocalStorage (id, value) {
+    let items = getLocalStorage();
+
+    items = items.map(function (item) {
+      if (item.id === id) {
+        item.value = value;
+      }
+      return item;
+    });
+    localStorage.setItem("list", JSON.stringify(items));
+}
+
+function removeFromLocalStorage (id) {
+    let items = getLocalStorage();
+
+  items = items.filter(function (item) {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+
+  localStorage.setItem("list", JSON.stringify(items));
+
+}
+
+function getLocalStorage () {
+   return localStorage.getItem("list")?JSON.parse
+    (localStorage.getItem('list'))
+    :[];
+}
+
