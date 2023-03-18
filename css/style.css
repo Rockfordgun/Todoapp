@@ -286,7 +286,7 @@
     align-items: center;
     background: transparent;
     border-color: transparent;
-    color: var(--clr-red-light);
+    color: var(--clr-primary-8);
     margin: 0 auto;
     font-size: 0.85rem;
     letter-spacing: var(--spacing);
